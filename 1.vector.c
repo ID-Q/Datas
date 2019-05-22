@@ -16,7 +16,7 @@ typedef struct Vector {
 } Vector;
 
 Vector *init (int n) {
-    Vector * p = (Vector *)malloc(sizeof(Vector));
+    Vector *p = (Vector *)malloc(sizeof(Vector));
     p->data = (int *)malloc(sizeof(int) * n);
     p->size = n;
     p->length = 0;
