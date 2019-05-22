@@ -40,6 +40,7 @@ void push(Queue *q, int val) {
 }
 
 void pop(Queue *q) {
+    if (empty(q)) return ;
     q->head += 1;
     if (q->head >= q->length) q->head -= q->length;
     q->count -= 1;
