@@ -45,7 +45,7 @@ void pop(Stack *s) {
 }
 
 void clear(Stack *s) {
-    if (s ==NULL) return ;
+    if (s == NULL) return ;
     free(s->data);
     free(s);
     return ;
