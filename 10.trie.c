@@ -17,17 +17,21 @@ typedef struct Node {
     struct Node *next[BASE];
 } Node;
 
+int cnt = 0;
+int letter_cnt = 0;
+
 Node *getNewNode() {
+    cnt += 1;
     Node *p = (Node *)calloc(1, sizeof(Node));
     return p;
 }
 
 void insert(Node *node, const char *s) {
     Node *p = node;
-    for (int i= 0; s[i]; i++) {
+    for (int i = 0; s[i]; i++) {
         if (p->next[s[i] - BASE_LETTER] == NULL) {
             p->next[s[i] - BASE_LETTER] = getNewNode();
-        } 
+        }
         p = p->next[s[i] - BASE_LETTER];
     }
     p->flag = 1;
@@ -37,10 +41,8 @@ void insert(Node *node, const char *s) {
 int query(Node *node, const char *s) {
     Node *p = node;
     for (int i = 0; s[i]; i++) {
-        if (p->next[s[i] - BASE_LETTER] == NULL) {
-            return 0;
-        }
-        p = p->next[s[i] - BASE_LETTER]; 
+        p = p->next[s[i] - BASE_LETTER];
+        if (p == NULL) return 0;
     }
     return p->flag;
 }
@@ -61,11 +63,13 @@ int main() {
     Node *root = getNewNode();
     for (int i = 0; i < n; i++) {
         scanf("%s", str);
+        letter_cnt += strlen(str);
         insert(root, str);
     }
-    for (int j = 0; j < m; j++) {
+    printf("rate : %lf\n", 1.0 * letter_cnt / (cnt * sizeof(Node)));
+    for (int i = 0; i < m; i++) {
         scanf("%s", str);
-        printf("%s -> %d\n", str, query(root, str));
+        printf("query(%s) = %d\n", str, query(root, str));
     }
     return 0;
 }
