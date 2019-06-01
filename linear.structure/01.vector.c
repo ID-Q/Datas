@@ -15,11 +15,11 @@ typedef struct Vector {
 } Vector;
 
 Vector *init (int n) {
-    Vector *p = (Vector *)malloc(sizeof(Vector));
-    p->data = (int *)malloc(sizeof(int) * n);
-    p->size = n;
-    p->length = 0;
-    return p;
+    Vector *v = (Vector *)malloc(sizeof(Vector));
+    v->data = (int *)malloc(sizeof(int) * n);
+    v->size = n;
+    v->length = 0;
+    return v;
 }
 
 int expand(Vector *v) {
@@ -39,9 +39,7 @@ int expand(Vector *v) {
 int insert(Vector *v, int ind, int val) {
     if (ind < 0 || ind > v->length) return 0;
     if (v->length == v->size) {
-        if (!expand(v)) {
-            return 0;
-        }
+        if (!expand(v)) return 0;
     }
     for (int i = v->length - 1; i >= ind; i--){
         v->data[i + 1] = v->data[i];
@@ -60,10 +58,19 @@ int erase(Vector *v, int ind) {
     return 1;
 }
 
+int search(Vector *v, int val) {
+    int ind = 0;
+    while (ind <= v->length && v->data[ind] != val) {
+        ind += 1;
+    }
+    if (v->data[ind] == val) return ind;
+    return 0;
+}
+
 void output(Vector *v) {
     if(v == NULL) return ;
-    printf("arr = [");
-    for (int i = -1;i < v->length; i++) {
+    printf("vector = [");
+    for (int i = 0; i < v->length; i++) {
         printf(" %d", v->data[i]);
     }
     printf("]\n");
@@ -86,20 +93,17 @@ int main() {
         ind = rand() % (v->length + 3) - 1;
         val = rand() % 100;
         switch (op) {
-            case 0: {
-
-            }
-            case 1: {
-
-            }
+            case 0: 
+            case 1:
             case 2: {
                 printf("insert \033[31m%d\033[0m to vector at \033[32m%d\033[0m = \033[33m%d\033[0m\n", val, ind, insert(v, ind, val));
                 output(v);
-            }
+                printf("search  \033[31m%d\033[0m from vector = \033[32m%d\033[0m\n", val, search(v, val));
+            } break;
             case 3: {
                 printf("erase element at \033[31m%d\033[0m from vector \033[32m%d\033[0m\n", ind, erase(v, ind));
                 output(v);
-            }
+            } break;
             default: 
                 fprintf(stderr, "wrong op \033[31m%d\033[0m\n", op);
             break;
