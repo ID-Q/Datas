@@ -74,7 +74,7 @@ int main() {
             case 0:
             case 1:
             case 2: {
-                printf("insert %d to queue\n", val);
+                printf("push %d to queue\n", val);
                 push(q, val);
             } break;
             case 3: {
