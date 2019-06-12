@@ -52,7 +52,7 @@ int search(HashTable *h, char *str) {
     Node *p = h->data[ind];
     while (p && strcmp(p->str, str)) p = p->next;
     return p != NULL;
-}
+ }
 
 void clear_node(Node *node) {
     if (node == NULL) return ;
