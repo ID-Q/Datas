@@ -62,7 +62,7 @@ void merge_sort(int *num, int l, int r) {
         if (p2 > r || (p1 <= mid && num[p1] <= num[p2])) {
             temp[k++] = num[p1++];
         } else {
-            temp[k++] = num[p2++];
+            temp[k++] = num[p2++]
         }
     }
     memcpy(num + l, temp, sizeof(int) * (r - l + 1));
