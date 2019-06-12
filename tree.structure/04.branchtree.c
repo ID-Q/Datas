@@ -10,7 +10,7 @@
 #define swap(a, b) ({ \
 	__typeof(a) __temp = (a);\
 	(a) = (b);\
- (b) = __temp;\
+    (b) = __temp;\
 })
 
 #define MAX_M 1000000
