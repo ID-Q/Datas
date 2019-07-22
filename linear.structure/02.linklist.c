@@ -50,6 +50,22 @@ int search(LinkList *l, int val) {
     return ind;
 }
 
+int delete(LinkList *l, int ind) {
+    if (ind < 0 || ind > l->length) return 0;
+    LinkListNode *p = l->head.next, *delete_node;
+    if (ind == 0) {
+        l->head.next = NULL;
+        l->length = 0;
+        return 1;
+    }
+    while (ind--) p = p->next;
+    delete_node = p;
+    p = delete_node->next;
+    free(delete_node);
+    l->length -= 1;
+    return 1;
+}
+
 void clear(LinkList *l) {
     LinkListNode *p = l->head.next, *q;
     while (p) {
