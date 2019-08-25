@@ -17,7 +17,7 @@
 int num[MAX_N + 5], n;
 
 void update_down(int *num, int ind, int n) {
-    while (ind << 1 <= n){
+    while (ind << 1 <= n) {
         int temp = ind, lchild = ind << 1, rchild = ind << 1 | 1;
         if (num[temp] < num[lchild]) temp = lchild;
         if (rchild <= n && num[temp] < num[rchild]) temp = rchild;
