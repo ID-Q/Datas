@@ -72,6 +72,57 @@ void clear(LinkList *l) {
     return ;
 }
 
+//反转链表
+LinkList *reverse(LinkList *l) {
+    LinkListNode *new = l->head.next, *p, *q;
+    p = new;
+    new = NULL;
+    while (p) {
+        q = p->next;
+        p->next = new;
+        new = p;
+        p = q;
+    }
+    l->head.next = new;
+    return l;
+}
+//链表排序
+LinkList *sort(LinkList *l) {
+    LinkListNode *p, *end = NULL;
+    while (end != p) {
+        p = l->head.next;
+        while (p->next != end) {
+            if (p->data > p->next->data) {
+                p->data ^= p->next->data;
+                p->next->data ^= p->data;
+                p->data ^= p->next->data;
+            }
+            p = p->next;
+        }
+        end = p;
+    }
+    l->head.next = p;
+    return l;
+}
+
+//链表去重
+LinkList *unique(LinkList *l) {
+    LinkListNode *p, *q;
+    p = l->head.next;
+    while (p) {
+        if (p->next == NULL) break;
+        if (p->data == p->next->data) {
+            q = p->next->next;
+            free(p->next);
+            p->next = q;
+        } else {
+            p = p->next;
+        }
+    }
+    l->head.next = p;
+    return l;
+}
+
 void output(LinkList *l) {
     printf("\033[31mhead\033[0m -> ");
     LinkListNode *p = l->head.next;
