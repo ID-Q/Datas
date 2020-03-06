@@ -12,7 +12,7 @@
 
 #define swap(a, b) { \
     __typeof(a) _temp = a; a = b; b = _temp; \
-}
+
 
 #define TEST(arr, n, func, args...) { \
     int *num = (int *)malloc(sizeof(int) * n); \
