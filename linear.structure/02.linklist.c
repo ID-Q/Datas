@@ -46,7 +46,7 @@ int search(LinkList *l, int val) {
     int ind = 0;
     LinkListNode *p =l->head.next;
     while (p && p->data != val) p = p->next, ind += 1;
-    if(ind == l->length) p->data = val;
+    if (ind == l->length) p->data = val;
     return ind;
 }
 
@@ -86,6 +86,7 @@ LinkList *reverse(LinkList *l) {
     l->head.next = new;
     return l;
 }
+
 //链表排序
 LinkList *sort(LinkList *l) {
     LinkListNode *p, *end = NULL;
