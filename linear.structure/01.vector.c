@@ -14,7 +14,7 @@ typedef struct Vector {
     int size, length;
 } Vector;
 
-Vector *init (int n) {
+Vector *init(int n) {
     Vector *v = (Vector *)malloc(sizeof(Vector));
     v->data = (int *)malloc(sizeof(int) * n);
     v->size = n;
